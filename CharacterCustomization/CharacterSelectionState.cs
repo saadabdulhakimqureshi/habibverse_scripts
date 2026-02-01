@@ -22,42 +22,42 @@ using Unity.VisualScripting;
 
 public class CharacterSelectionState : MonoBehaviour
 {
-/*    // Start is called before the first frame update.
-    
-    public List<GameObject> characters;
+    /*    // Start is called before the first frame update.
 
-    public int index;
+        public List<GameObject> characters;
 
-    public GameObject CharacterSelectionCamera;
-*/
-    
-/*    void Start()
-    {
-        
-        index = 0;
-        CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().LookAt = characters[index].transform;
-        CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().Follow = characters[index].transform;
-    }
+        public int index;
 
-    
+        public GameObject CharacterSelectionCamera;
+    */
 
-    public void moveLeft()
-    {
+    /*    void Start()
+        {
 
-        index = (index - 1 + characters.Count) % characters.Count;
-        CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().LookAt = characters[index].transform;
-        CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().Follow = characters[index].transform;
+            index = 0;
+            CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().LookAt = characters[index].transform;
+            CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().Follow = characters[index].transform;
+        }
 
-    }
 
-    public void moveRight()
-    {
 
-        index = (index + 1) % characters.Count;
-        CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().LookAt = characters[index].transform;
-        CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().Follow = characters[index].transform;
-*/
-    }
+        public void moveLeft()
+        {
+
+            index = (index - 1 + characters.Count) % characters.Count;
+            CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().LookAt = characters[index].transform;
+            CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().Follow = characters[index].transform;
+
+        }
+
+        public void moveRight()
+        {
+
+            index = (index + 1) % characters.Count;
+            CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().LookAt = characters[index].transform;
+            CharacterSelectionCamera.GetComponent<CinemachineVirtualCamera>().Follow = characters[index].transform;
+    */
+}
 
 /*    public void ChangeHatRight()
     {
@@ -89,7 +89,7 @@ public class CharacterSelectionState : MonoBehaviour
         characters[index].transform.parent = spawnedPlayerTransform;*//*
     }*/
 
-    
+
 
 /*    public void PaintCharacter()
     {
@@ -141,7 +141,7 @@ public class CharacterSelectionState : MonoBehaviour
 
     }*/
 
-    
 
-    
+
+
 

@@ -1,3 +1,18 @@
+/// <summary>
+/// PlayerController - Local Player Input & Movement
+/// 
+/// Handles all local player input processing and movement logic.
+/// Manages keyboard/controller input, camera follow, and networked position updates.
+/// 
+/// Key Responsibilities:
+/// - Process player input (movement, jumping, actions)
+/// - Calculate and apply movement velocity
+/// - Network movement synchronization
+/// - Weapon/shooting mechanics
+/// - Interaction with Cinemachine camera
+/// 
+/// Dependencies: Cinemachine, Netcode, Unity Services Authentication
+/// </summary>
 
 using Cinemachine;
 using System;
@@ -66,7 +81,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private bool isNetworked = false;
     [SerializeField] private ulong clientId;
     public bool isLocalPlayer;
-    
+
     public event EventHandler OnPlayerSpawn;
     public event EventHandler OnPlayerAim;
     public event EventHandler OnPlayerStopAim;
@@ -108,7 +123,7 @@ public class PlayerController : NetworkBehaviour
 
         rigidBody.isKinematic = false;
 
-        
+
 
         // Enabling logic for non network testing
         if (IsLocalPlayer || !isNetworked)
@@ -152,8 +167,9 @@ public class PlayerController : NetworkBehaviour
     {
         if (IsClient && IsOwner || !isNetworked)
         {
-            
-            if (LocalPlayerGameManager.Instance != null){
+
+            if (LocalPlayerGameManager.Instance != null)
+            {
                 if (LocalPlayerGameManager.Instance.State == LocalPlayerGameManager.LocalState.Resumed)
                 {
                     CheckInput();
@@ -161,9 +177,9 @@ public class PlayerController : NetworkBehaviour
             }
             else
             {
-                CheckInput() ;
+                CheckInput();
             }
-            
+
             DecisionTree();
         }
     }
@@ -197,7 +213,7 @@ public class PlayerController : NetworkBehaviour
                 }
             case State.FALL:
                 {
-                    
+
                     break;
                 }
 
@@ -257,33 +273,33 @@ public class PlayerController : NetworkBehaviour
                 }
             }
 
-/*            if (Input.GetMouseButton(1))
-            {
-                AimCamera.Priority = 1;
-                FreelookCamera.Priority = 0;
-                OnPlayerAim?.Invoke(this, EventArgs.Empty);*/
+            /*            if (Input.GetMouseButton(1))
+                        {
+                            AimCamera.Priority = 1;
+                            FreelookCamera.Priority = 0;
+                            OnPlayerAim?.Invoke(this, EventArgs.Empty);*/
 
-                if (Input.GetMouseButtonDown(0) && ammo > 0)
+            if (Input.GetMouseButtonDown(0) && ammo > 0)
+            {
+                Ray ray = FollowCameraTransform.GetComponent<Camera>().ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
                 {
-                    Ray ray = FollowCameraTransform.GetComponent<Camera>().ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        // Call the Fire function with the hit point as the shoot position
-                        Fire(hit.point);
-                        ammo--;
-                        PlayerGameManager.Ammo = ammo;
-                    }
+                    // Call the Fire function with the hit point as the shoot position
+                    Fire(hit.point);
+                    ammo--;
+                    PlayerGameManager.Ammo = ammo;
                 }
+            }
 
-/*            }
-            else
-            {
-                AimCamera.Priority = 0;
-                FreelookCamera.Priority = 1;
-                OnPlayerStopAim?.Invoke(this, EventArgs.Empty);
-            }*/
+            /*            }
+                        else
+                        {
+                            AimCamera.Priority = 0;
+                            FreelookCamera.Priority = 1;
+                            OnPlayerStopAim?.Invoke(this, EventArgs.Empty);
+                        }*/
         }
     }
 
@@ -324,7 +340,7 @@ public class PlayerController : NetworkBehaviour
         if (LocalPlayerGameManager.Instance != null && LocalPlayerGameManager.Instance.State == LocalPlayerGameManager.LocalState.Resumed)
         {
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            
+
             rigidBody.AddForce(move * slideForce * Time.deltaTime);
 
         }
@@ -355,7 +371,7 @@ public class PlayerController : NetworkBehaviour
         this.clientId = clientId;
         SetClientIdClientRpc(clientId);
     }
-    
+
     // Making sure client id is also updated on clients end.
     [ClientRpc]
     public void SetClientIdClientRpc(ulong clientId)
@@ -374,7 +390,7 @@ public class PlayerController : NetworkBehaviour
         currentState = State.ROLL;
         Debug.Log("Enable Slide");
         characterController.enabled = false;
-        
+
         rigidBody.constraints = RigidbodyConstraints.None;
 
 
@@ -391,10 +407,10 @@ public class PlayerController : NetworkBehaviour
 
         currentState = State.IDLE;
         Debug.Log("Disable Slide");
-        
+
         rigidBody.constraints = RigidbodyConstraints.FreezeAll;
         characterController.enabled = true;
-        
+
     }
 
     public void Fall(Vector3 force)
@@ -416,14 +432,14 @@ public class PlayerController : NetworkBehaviour
 
     public void SizeUp()
     {
-        transform.localScale = Vector3.one*1.5f;
+        transform.localScale = Vector3.one * 1.5f;
         StartCoroutine(SizeDown());
     }
 
     IEnumerator SizeDown()
     {
         yield return new WaitForSeconds(50f);
-        transform.localScale = Vector3.one ;
+        transform.localScale = Vector3.one;
     }
 
     public void EnableSuperJump()

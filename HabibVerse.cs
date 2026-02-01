@@ -43,7 +43,7 @@ public class HabibVerse : NetworkBehaviour
     private void Players_OnListChanged(NetworkListEvent<CustomizationData> changeEvent)
     {
         // Whenever our player list changes we invoke this event.
-        OnPlayerListChanged?.Invoke(this, EventArgs.Empty); 
+        OnPlayerListChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public override void OnNetworkSpawn()
@@ -75,19 +75,19 @@ public class HabibVerse : NetworkBehaviour
         float r = Random.Range(0f, 1f);
         float g = Random.Range(0f, 1f);
         float b = Random.Range(0f, 1f);
-        players.Add(new CustomizationData(clientId, new Color(r, g, b), new (r, g, b), 0, 0, 0, 0));
+        players.Add(new CustomizationData(clientId, new Color(r, g, b), new(r, g, b), 0, 0, 0, 0));
     }
 
     // Called when client disconnects.
-    void ClientDisconnectedHandler(ulong clientId) 
+    void ClientDisconnectedHandler(ulong clientId)
     {
         // Removing player from network list.
-        for (int i = 0; i< players.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             if (clientId == players[i].clientId)
             {
                 players.Remove(players[i]);
-                break;  
+                break;
             }
         }
     }
@@ -191,7 +191,7 @@ public class HabibVerse : NetworkBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
-           
+
             if (serverRpcParams.Receive.SenderClientId == players[i].clientId)
             {
                 CustomizationData cusomizationData = players[i];
@@ -202,12 +202,12 @@ public class HabibVerse : NetworkBehaviour
         OnPlayerDataChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void SetModelColor(Color color )
+    public void SetModelColor(Color color)
     {
         SetModelColorServerRpc(color);
     }
 
-    [ServerRpc(RequireOwnership =false)]
+    [ServerRpc(RequireOwnership = false)]
     public void SetModelColorServerRpc(Color Color, ServerRpcParams serverRpcParams = default)
     {
         for (int i = 0; i < players.Count; i++)
@@ -296,7 +296,7 @@ public class HabibVerse : NetworkBehaviour
             {
                 CustomizationData cusomizationData = players[i];
                 cusomizationData.faceIndex = index;
-                players[i]=cusomizationData;
+                players[i] = cusomizationData;
             }
         }
         OnPlayerDataChanged?.Invoke(this, EventArgs.Empty);
@@ -331,7 +331,7 @@ public class HabibVerse : NetworkBehaviour
             Debug.Log("Color " + players[i].modelColor);
         }
 
-        
+
     }
 }
 

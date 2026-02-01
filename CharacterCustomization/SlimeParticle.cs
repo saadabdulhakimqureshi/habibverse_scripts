@@ -1,3 +1,15 @@
+/// <summary>
+/// SlimeParticle - Particle Effect Manager
+/// 
+/// Manages particle effects for the slime character including color and type variations.
+/// Spawns and controls particle systems based on customization choices.
+/// 
+/// Features:
+/// - Particle effect variations
+/// - Particle spawning and positioning
+/// - Color customization support
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -8,7 +20,7 @@ public class SlimeParticle : MonoBehaviour
     public List<GameObject> particlesList;
     public Transform particleSpawnTransform;
     public GameObject currentParticles;
-    
+
     void Start()
     {
     }

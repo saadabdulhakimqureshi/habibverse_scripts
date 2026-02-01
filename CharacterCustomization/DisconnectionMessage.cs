@@ -1,3 +1,16 @@
+/// <summary>
+/// DisconnectionMessage - Network Disconnection Handler
+/// 
+/// Displays disconnection messages when players lose connection.
+/// Provides options to retry connection or return to main menu.
+/// 
+/// Features:
+/// - Disconnection notification UI
+/// - Retry connection logic
+/// - Scene navigation on disconnect
+/// - Input system integration
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -31,7 +44,7 @@ public class DisconnectionMessage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void ReturnToLobbyScene()

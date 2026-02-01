@@ -21,13 +21,13 @@ public class SlimeModel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SetModel(int index)
@@ -35,6 +35,6 @@ public class SlimeModel : MonoBehaviour
         Transform modelTransform = transform.Find("Model");
         SkinnedMeshRenderer sMR = modelTransform.GetComponent<SkinnedMeshRenderer>();
         sMR.sharedMesh = meshes[index];
-        
+
     }
 }

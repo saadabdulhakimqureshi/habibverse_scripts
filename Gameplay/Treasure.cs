@@ -1,3 +1,16 @@
+/// <summary>
+/// Treasure - Treasure Hunt Collectible
+/// 
+/// Treasure collectible in treasure hunt mode with scoring value.
+/// Players must locate and collect treasures to gain points.
+/// 
+/// Features:
+/// - Hint system for treasure location
+/// - Collection and scoring logic
+/// - Treasure information display
+/// - Game mode integration
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -26,7 +39,7 @@ public class Treasure : MonoBehaviour
         {
             if (HabibVerseTreasureHuntManager.Instance != null)
             {
-                if (other.GetComponent<PlayerController>().NextClue()) 
+                if (other.GetComponent<PlayerController>().NextClue())
                 {
                     //gameObject.SetActive(false);
                 }

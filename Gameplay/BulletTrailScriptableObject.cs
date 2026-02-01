@@ -1,4 +1,20 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// BulletTrailScriptableObject - Bullet Trail Configuration
+/// 
+/// ScriptableObject configuration for bullet trail visual effects.
+/// Defines width, color, material, and lifetime of bullet trails.
+/// 
+/// Features:
+/// - Width curve over time
+/// - Color gradient animation
+/// - Material assignment
+/// - Trail duration configuration
+/// - Vertex spacing control
+/// 
+/// Usage: Create asset via "ScriptableObject/Bullet Trail Config" context menu.
+/// </summary>
+
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "Bullet Trail Config", menuName = "ScriptableObject/Bullet Trail Config")]
 public class BulletTrailScriptableObject : ScriptableObject

@@ -1,3 +1,19 @@
+/// <summary>
+/// Bullet - Projectile Behavior
+/// 
+/// Handles projectile physics, collision detection, and damage application.
+/// Network-synchronized projectile that affects multiple players.
+/// 
+/// Features:
+/// - Projectile velocity and physics
+/// - Collision and impact detection
+/// - Damage application to hit targets
+/// - Network synchronization
+/// - Trail effect integration
+/// 
+/// Dependencies: Netcode
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -83,7 +99,7 @@ public class Bullet : NetworkBehaviour
 
     public void Setup(Vector3 shootPosition, Vector3 direction, string shooter)
     {
-        
+
         transform.LookAt(shootPosition); // Normalize the direction vector
 
         this.position = shootPosition;
@@ -95,12 +111,12 @@ public class Bullet : NetworkBehaviour
     {
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
 
-        if (playerController != null )
+        if (playerController != null)
         {
             playerController.Fall(transform.forward * bulletForce);
         }
 
         GetComponent<NetworkObject>().Despawn();
-        Disable();   
+        Disable();
     }
 }

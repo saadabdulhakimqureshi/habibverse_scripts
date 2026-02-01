@@ -1,3 +1,18 @@
+/// <summary>
+/// LocalPlayerGameManager - Local Player Gameplay State
+/// 
+/// Manages game state and mechanics for the local player instance.
+/// Coordinates with game modes and handles local gameplay events.
+/// 
+/// Features:
+/// - Local game state management
+/// - Gameplay event coordination
+/// - Local player reference handling
+/// - Scene management integration
+/// 
+/// Dependencies: Netcode, Scene Management
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,7 +34,8 @@ public class LocalPlayerGameManager : MonoBehaviour
 
     public int Ammo;
 
-    public enum LocalState {
+    public enum LocalState
+    {
         Paused,
         Resumed,
         Chat
@@ -68,7 +84,7 @@ public class LocalPlayerGameManager : MonoBehaviour
             if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("CharacterSelectionScene"))
             {
                 ResumeGame();
-            }        
+            }
         }
     }
 
@@ -84,7 +100,7 @@ public class LocalPlayerGameManager : MonoBehaviour
         OnLocalPlayerQuit?.Invoke(this, EventArgs.Empty);
         // Shutting down network manager.
         Cleanup();
-        
+
     }
     void Cleanup()
     {

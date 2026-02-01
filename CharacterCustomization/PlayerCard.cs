@@ -1,3 +1,16 @@
+/// <summary>
+/// PlayerCard - Player Information Display Card
+/// 
+/// Displays player information in lobby (name, customization preview, ready status).
+/// Updates dynamically as customization data changes.
+/// 
+/// Features:
+/// - Display player name and avatar preview
+/// - Show player ready/not-ready status
+/// - Scene management integration
+/// - Network data synchronization
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,15 +29,15 @@ public class PlayerCard : MonoBehaviour
 
     public int playerIndex;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         HabibVerse.Instance.OnPlayerListChanged += Instance_OnPlayerListChanged;
         ReadySelect.Instance.OnReadyChange += Instance_OnReadyChange;
-        
+
         CheckPlayers();
     }
 
@@ -46,7 +59,7 @@ public class PlayerCard : MonoBehaviour
         if (HabibVerse.Instance.IsPlayerIndexConnected(playerIndex))
         {
             Show();
-            if (tag == "NonPrefab") 
+            if (tag == "NonPrefab")
             {
                 // Checks if current player is ready.
                 CustomizationData playerData = HabibVerse.Instance.GetCustomizationData(playerIndex);

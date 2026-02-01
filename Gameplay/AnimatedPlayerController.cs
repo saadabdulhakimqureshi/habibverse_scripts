@@ -1,3 +1,18 @@
+/// <summary>
+/// AnimatedPlayerController - Animation Synchronization
+/// 
+/// Manages animation state and synchronization for networked players.
+/// Syncs movement animations across all clients and handles animation playback.
+/// 
+/// Features:
+/// - Movement animation state machine
+/// - Network animation synchronization
+/// - Animator parameter management
+/// - Idle/running/jumping states
+/// 
+/// Dependencies: Cinemachine, Netcode
+/// </summary>
+
 using Cinemachine;
 using System;
 using System.Collections;
@@ -48,7 +63,7 @@ public class AnimatedPlayerController : NetworkBehaviour
 
     public void Start()
     {
-        
+
         currentState = State.IDLE;
         characterController = GetComponent<CharacterController>();
 
@@ -88,24 +103,24 @@ public class AnimatedPlayerController : NetworkBehaviour
                     CheckInput();
                     break;
                 }
-/*            case State.WALK:
-                {
-                    CheckInput();
-                    //Move(0f, moveDirection);
-                    break;
-                }
-            case State.SPRINT:
-                {
-                    CheckInput();
-                    //Move(0f, moveDirection);
-                    break;
-                }
-            case State.JUMP:
-                {
-                    //CheckInput();
-                    //Move(jumpDistance, moveDirection);
-                    break;
-                }*/
+                /*            case State.WALK:
+                                {
+                                    CheckInput();
+                                    //Move(0f, moveDirection);
+                                    break;
+                                }
+                            case State.SPRINT:
+                                {
+                                    CheckInput();
+                                    //Move(0f, moveDirection);
+                                    break;
+                                }
+                            case State.JUMP:
+                                {
+                                    //CheckInput();
+                                    //Move(jumpDistance, moveDirection);
+                                    break;
+                                }*/
         }
     }
 
@@ -148,7 +163,7 @@ public class AnimatedPlayerController : NetworkBehaviour
     {
         currentState = State.JUMP;
         moveDirection.y = jumpDistance;
-        
+
     }
 
     void Move(float movingSpeed, Vector3 direction)

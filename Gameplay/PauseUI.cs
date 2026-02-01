@@ -1,3 +1,19 @@
+/// <summary>
+/// PauseUI - Pause Menu Interface
+/// 
+/// Provides pause menu with resume, settings, and quit options.
+/// Handles game state pause/resume and menu navigation.
+/// 
+/// Features:
+/// - Pause menu UI display
+/// - Resume game functionality
+/// - Settings panel integration
+/// - Quit to menu option
+/// - Input handling for pause toggle
+/// 
+/// Dependencies: Netcode, Scene Management
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,7 +50,7 @@ public class PauseUI : MonoBehaviour
     private void Instance_OnLocalPlayerResumed(object sender, EventArgs e)
     {
         Cursor.visible = false;
-        
+
         Hide();
     }
 
@@ -56,11 +72,11 @@ public class PauseUI : MonoBehaviour
 
     private void ReturnToLobbyScene()
     {
-        
+
         if (LocalPlayerGameManager.Instance != null)
             LocalPlayerGameManager.Instance.QuitGame();
-        
+
     }
-    
+
 
 }

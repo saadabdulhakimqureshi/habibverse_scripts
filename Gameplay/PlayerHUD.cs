@@ -1,3 +1,19 @@
+/// <summary>
+/// PlayerHUD - In-Game Heads-Up Display
+/// 
+/// Displays vital player information during gameplay (health, ammo, score).
+/// Updates in real-time with player state changes.
+/// 
+/// Features:
+/// - Health bar display
+/// - Ammunition counter
+/// - Score tracking
+/// - Player status information
+/// - TextMeshPro UI integration
+/// 
+/// Dependencies: Netcode, TextMeshPro, Unity Services
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,8 +44,8 @@ public class PlayerHUD : NetworkBehaviour
             if (AuthenticationService.Instance != null)
             {
                 if (LobbyManager.Instance != null)
-                playerName.Value = $"{LobbyManager.Instance.GetPlayerName()}";
-                
+                    playerName.Value = $"{LobbyManager.Instance.GetPlayerName()}";
+
             }
         }
 

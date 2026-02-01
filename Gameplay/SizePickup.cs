@@ -1,3 +1,18 @@
+/// <summary>
+/// SizePickup - Size/Scale Modification Item
+/// 
+/// Collectible item that temporarily or permanently alters player size/scale.
+/// Provides gameplay advantage or mechanic variation.
+/// 
+/// Features:
+/// - Spinning visual effect
+/// - Size modification application
+/// - Network synchronization
+/// - Duration/permanent toggling
+/// 
+/// Dependencies: Netcode
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;

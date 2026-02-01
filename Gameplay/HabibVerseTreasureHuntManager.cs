@@ -1,3 +1,19 @@
+/// <summary>
+/// HabibVerseTreasureHuntManager - Treasure Hunt Game Mode Manager
+/// 
+/// Manages the competitive treasure hunt game mode with collectibles and scoring.
+/// Handles treasure spawning, score tracking, and win conditions.
+/// 
+/// Features:
+/// - Treasure management and spawning
+/// - Score tracking and leaderboard
+/// - Treasure hunt-specific mechanics
+/// - Network state synchronization
+/// - Game end conditions
+/// 
+/// Dependencies: Netcode, LINQ
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,13 +88,15 @@ public class HabibVerseTreasureHuntManager : NetworkBehaviour
 
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (index.Value < path.Length)
         {
             path[index.Value].gameObject.SetActive(true);
         }
-        if (index.Value > 0){
-            path[index.Value-1].gameObject.SetActive(false);
+        if (index.Value > 0)
+        {
+            path[index.Value - 1].gameObject.SetActive(false);
         }
         if (index.Value == path.Length)
         {
@@ -107,7 +125,7 @@ public class HabibVerseTreasureHuntManager : NetworkBehaviour
         GenerateHuntClientRpc();
     }
 
-    [ClientRpc] 
+    [ClientRpc]
     private void GenerateHuntClientRpc()
     {
         Debug.Log("Treasure Trail Number " + randomNumber.Value);
@@ -160,7 +178,7 @@ public class HabibVerseTreasureHuntManager : NetworkBehaviour
             SetHintServerRpc();
         }
     }
-    
+
     [ServerRpc(RequireOwnership = false)]
     public void WonServerRpc()
     {

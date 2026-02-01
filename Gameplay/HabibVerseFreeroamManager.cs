@@ -1,3 +1,18 @@
+/// <summary>
+/// HabibVerseFreeroamManager - Freeroam Game Mode Manager
+/// 
+/// Manages the freeroam exploration game mode without objectives.
+/// Handles player spawning, game state, and mode-specific mechanics.
+/// 
+/// Features:
+/// - Freeroam game initialization
+/// - Player spawn management
+/// - Freeroam-specific rules and mechanics
+/// - Singleton access pattern
+/// 
+/// Dependencies: Netcode
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +31,7 @@ public class HabibVerseFreeroamManager : NetworkBehaviour
     [SerializeField] protected List<Transform> tapalSpawns;
     [SerializeField] protected List<Transform> spawns;
 
-    
+
 
     public void Awake()
     {
@@ -36,7 +51,7 @@ public class HabibVerseFreeroamManager : NetworkBehaviour
 
     public void Update()
     {
-        
+
     }
 
     public void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)

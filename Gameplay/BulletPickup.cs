@@ -1,3 +1,19 @@
+/// <summary>
+/// BulletPickup - Ammunition Pickup Item
+/// 
+/// Collectible item that replenishes player ammunition when picked up.
+/// Network-synchronized pickup with visual effects.
+/// 
+/// Features:
+/// - Spinning visual effect
+/// - Pickup detection and collection
+/// - Ammunition refill on collection
+/// - Network synchronization
+/// - Collection effects/feedback
+/// 
+/// Dependencies: Netcode
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -7,7 +23,7 @@ public class BulletPickup : NetworkBehaviour
 {
     public float spinSpeed;
 
-    public GameObject PickupEffect; 
+    public GameObject PickupEffect;
     // Start is called before the first frame update
     public override void OnNetworkSpawn()
     {
@@ -32,7 +48,7 @@ public class BulletPickup : NetworkBehaviour
 
             GameObject effect = Instantiate(PickupEffect, playerController.transform.position, Quaternion.identity);
 
-            
+
 
         }
     }

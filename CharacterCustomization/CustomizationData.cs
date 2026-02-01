@@ -34,15 +34,15 @@ public struct CustomizationData : INetworkSerializable, IEquatable<Customization
     public int auraIndex;
 
     // Start is called before the first frame update
-    public CustomizationData(ulong clientId, Color modelColor, Color particlesColor, int modelIndex, int hatIndex, int faceIndex, int auraIndex) :this()
+    public CustomizationData(ulong clientId, Color modelColor, Color particlesColor, int modelIndex, int hatIndex, int faceIndex, int auraIndex) : this()
     {
-        
+
         this.playerName = "";
         this.modelIndex = modelIndex;
         this.clientId = clientId;
         this.modelColor = modelColor;
         this.particlesColor = particlesColor;
-        this.hatIndex = hatIndex;   
+        this.hatIndex = hatIndex;
         this.faceIndex = faceIndex;
         this.auraIndex = auraIndex;
     }
@@ -65,5 +65,5 @@ public struct CustomizationData : INetworkSerializable, IEquatable<Customization
             && other.modelColor == this.modelColor && other.particlesColor == this.particlesColor;
     }
 
-    
+
 }

@@ -1,3 +1,15 @@
+/// <summary>
+/// ServerUI - Server-Side Customization UI
+/// 
+/// Manages server-side UI during the character customization phase.
+/// Coordinates with the game host/server for customization validation.
+/// 
+/// Features:
+/// - Server-side UI management
+/// - Connection status display
+/// - Server reference management
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -16,13 +28,16 @@ public class ServerUI : MonoBehaviour
     public Button Client;
     void Start()
     {
-        Host.onClick.AddListener(() => {
+        Host.onClick.AddListener(() =>
+        {
             NetworkManager.StartHost();
         });
-        Server.onClick.AddListener(() => {
+        Server.onClick.AddListener(() =>
+        {
             NetworkManager.StartServer();
         });
-        Client.onClick.AddListener(() => {
+        Client.onClick.AddListener(() =>
+        {
             NetworkManager.StartClient();
         });
     }
@@ -30,6 +45,6 @@ public class ServerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

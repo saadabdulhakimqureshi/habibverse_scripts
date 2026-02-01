@@ -1,3 +1,19 @@
+/// <summary>
+/// PlayerManager - Individual Player Instance Manager
+/// 
+/// Manages a single player instance including health, state, and gameplay properties.
+/// Handles player damage, death, respawning, and networked player state.
+/// 
+/// Key Responsibilities:
+/// - Health management and damage handling
+/// - Player death and respawn logic
+/// - Pickup collection tracking
+/// - Score management
+/// - Network state synchronization
+/// 
+/// Dependencies: Netcode
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,11 +24,13 @@ public class PlayerManager : NetworkBehaviour
 {
     public static PlayerManager instance;
 
-    private NetworkVariable<int> playersInGame = new NetworkVariable<int>(0); 
+    private NetworkVariable<int> playersInGame = new NetworkVariable<int>(0);
 
-    [SerializeField] public int PlayersInGame
+    [SerializeField]
+    public int PlayersInGame
     {
-        get {
+        get
+        {
             return playersInGame.Value;
         }
     }

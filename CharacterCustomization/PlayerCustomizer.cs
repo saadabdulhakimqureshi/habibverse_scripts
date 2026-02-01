@@ -35,14 +35,14 @@ public class PlayerCustomizer : MonoBehaviour
         HabibVerse.Instance.OnPlayerDataChanged += Instance_OnPlayerDataChanged;
 
         // If our player index is equal to clients player index then we make our camera look at model.
-/*        if (NetworkManager.Singleton.IsClient)
-        {
-            if (HabibVerse.Instance.OwnerOfIndex(NetworkManager.Singleton.LocalClientId, playerIndex))
-            {
-                CameraManager.instance.ChangeCharacter(transform);
-            }
-        }*/
-        
+        /*        if (NetworkManager.Singleton.IsClient)
+                {
+                    if (HabibVerse.Instance.OwnerOfIndex(NetworkManager.Singleton.LocalClientId, playerIndex))
+                    {
+                        CameraManager.instance.ChangeCharacter(transform);
+                    }
+                }*/
+
         // Add Subscribtion to Update Model.
         UpdataPlayers();
     }
@@ -130,7 +130,7 @@ public class PlayerCustomizer : MonoBehaviour
     }
     public void SetModelColor(Color color)
     {
-        
+
         GetComponent<SlimeMaterialColor>().SetColor(color);
     }
 

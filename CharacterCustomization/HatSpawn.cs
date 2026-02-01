@@ -22,16 +22,16 @@ using UnityEngine;
 public class HatSpawn : MonoBehaviour
 {
     public List<Transform> hats;
-    public Transform HatSpawnTransform; 
+    public Transform HatSpawnTransform;
     public Transform currentHat;
     public int index;
 
 
     void Start()
     {
-        
 
-        
+
+
         // SpawnHat(index);
     }
 
@@ -43,7 +43,7 @@ public class HatSpawn : MonoBehaviour
 
 
 
-    
+
     public void SpawnHat(int index)
     {
         if (currentHat != null)

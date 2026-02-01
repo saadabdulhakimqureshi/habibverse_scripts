@@ -1,3 +1,18 @@
+/// <summary>
+/// AnimationController - Networked Animation Management
+/// 
+/// Manages animator component and animation state synchronization across network.
+/// Coordinates animation parameters with player state.
+/// 
+/// Features:
+/// - Animator parameter management
+/// - Network animation synchronization
+/// - Animation state tracking
+/// - Movement state integration
+/// 
+/// Dependencies: Netcode, Animator
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -10,7 +25,7 @@ public class AnimationController : NetworkBehaviour
     // Start is called before the first frame update
     [Header("Player References")]
     public PlayerController playerController;
-    
+
     public CharacterController CharacterController;
     [Header("Animation Parameters")]
     [SerializeField] string IDLE;
@@ -38,15 +53,16 @@ public class AnimationController : NetworkBehaviour
     }
     public void SetupCharacter(Animator animator)
     {
-        this.Animator = animator; 
+        this.Animator = animator;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsClient && IsOwner || !isNetworked){
+        if (IsClient && IsOwner || !isNetworked)
+        {
             DecisionTree();
-        } 
+        }
     }
 
 
@@ -64,29 +80,29 @@ public class AnimationController : NetworkBehaviour
                 case PlayerController.State.IDLE:
                     {
                         PlayAnimation(WALK);
-/*                        AnimatorSetVariable("Speed", inputMagnitude);
-                        AnimatorSetVariable("SprintSpeed", 1f);*/
+                        /*                        AnimatorSetVariable("Speed", inputMagnitude);
+                                                AnimatorSetVariable("SprintSpeed", 1f);*/
                         break;
                     }
-/*                case PlayerController.State.WALK:
-                    {
-                        PlayAnimation(WALK);
-                        AnimatorSetVariable("Speed", inputMagnitude);
-                        AnimatorSetVariable("SprintSpeed", 1f);
-                        break;
-                    }
-                case PlayerController.State.SPRINT:
-                    {
-                        PlayAnimation(WALK);
-                        AnimatorSetVariable("Speed", inputMagnitude);
-                        AnimatorSetVariable("SprintSpeed", 1.4f);
-                        break;
-                    }
-                case PlayerController.State.JUMP:
-                    {
-                        PlayAnimation(JUMP);
-                        break;
-                    }*/
+                    /*                case PlayerController.State.WALK:
+                                        {
+                                            PlayAnimation(WALK);
+                                            AnimatorSetVariable("Speed", inputMagnitude);
+                                            AnimatorSetVariable("SprintSpeed", 1f);
+                                            break;
+                                        }
+                                    case PlayerController.State.SPRINT:
+                                        {
+                                            PlayAnimation(WALK);
+                                            AnimatorSetVariable("Speed", inputMagnitude);
+                                            AnimatorSetVariable("SprintSpeed", 1.4f);
+                                            break;
+                                        }
+                                    case PlayerController.State.JUMP:
+                                        {
+                                            PlayAnimation(JUMP);
+                                            break;
+                                        }*/
             }
         }
     }
@@ -109,7 +125,7 @@ public class AnimationController : NetworkBehaviour
 
     void PlayAnimation(FixedString128Bytes animation)
     {
-            Animator.Play(animation.ToString());
+        Animator.Play(animation.ToString());
     }
 
     void AnimatorSetVariable(FixedString128Bytes name, float value)
