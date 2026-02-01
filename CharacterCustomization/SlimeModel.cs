@@ -1,3 +1,15 @@
+/// <summary>
+/// SlimeModel - Slime Character Model Manager
+/// 
+/// Manages the 3D slime character model and mesh variations.
+/// Handles model appearance changes including colors, textures, and mesh swaps during customization.
+/// 
+/// Features:
+/// - Stores multiple mesh variations for character customization
+/// - Updates model appearance in real-time
+/// - Synchronizes visual changes with CustomizationData
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;

@@ -1,3 +1,18 @@
+/// <summary>
+/// SimpleCameraController - Free-Look Camera System
+/// 
+/// Provides smooth, responsive camera control for non-gameplay scenes (menus, customization).
+/// Supports both legacy input system and new Input System.
+/// 
+/// Features:
+/// - Smooth camera rotation with mouse input
+/// - WASD movement with speed boost capability
+/// - Camera state management (position and rotation)
+/// - Framerate-independent movement
+/// 
+/// Usage: Attach to main camera GameObject for menu/UI scenes.
+/// </summary>
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif

@@ -1,3 +1,18 @@
+/// <summary>
+/// TimerUI - In-Game Timer Display
+/// 
+/// Displays a countdown or count-up timer on the game UI using TextMeshPro.
+/// Used for game modes with time limits and match duration tracking.
+/// 
+/// Features:
+/// - Configurable timer duration
+/// - Countdown/count-up toggle
+/// - TextMeshPro UI integration
+/// - Real-time timer updates
+/// 
+/// Usage: Place on a Canvas with a TextMeshProUGUI component reference.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;

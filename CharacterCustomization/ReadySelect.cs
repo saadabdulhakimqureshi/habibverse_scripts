@@ -1,3 +1,18 @@
+/// <summary>
+/// ReadySelect - Ready State Synchronization
+/// 
+/// Manages and synchronizes player ready states across the network.
+/// Handles player ready/not-ready logic and initiates scene transitions when all players are ready.
+/// 
+/// Features:
+/// - NetworkBehaviour for Netcode synchronization
+/// - Ready state tracking for each player
+/// - Automatic scene transition when all players ready
+/// - Server-side state management
+/// 
+/// Dependencies: Netcode, UnityEngine.SceneManagement
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

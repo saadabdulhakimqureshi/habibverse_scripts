@@ -1,3 +1,18 @@
+/// <summary>
+/// CameraManager - Customization Scene Camera Controller
+/// 
+/// Manages virtual camera transitions between customization and lobby scenes.
+/// Provides smooth camera switching and focus management using Cinemachine.
+/// 
+/// Features:
+/// - Virtual camera management for CharacterSelection scene
+/// - Virtual camera management for Lobby scene
+/// - Singleton pattern for easy access
+/// - Smooth camera transitions
+/// 
+/// Dependencies: Cinemachine, Netcode
+/// </summary>
+
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;

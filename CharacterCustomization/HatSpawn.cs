@@ -1,3 +1,16 @@
+/// <summary>
+/// HatSpawn - Hat and Cosmetic Item Spawning
+/// 
+/// Instantiates and manages cosmetic items (hats, accessories) on the player character model.
+/// Handles positioning and parenting of cosmetics based on customization selections.
+/// 
+/// Features:
+/// - Dynamic cosmetic item spawning
+/// - Position and rotation management
+/// - Integration with CustomizationData
+/// - Network synchronization support
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

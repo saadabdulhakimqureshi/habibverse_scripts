@@ -8,44 +8,76 @@ HabibVerse is a multiplayer game featuring character customization, real-time ch
 
 ## Project Structure
 
-### Core Systems
+### Root Level Scripts (Core Entry Points)
 
-- **CharacterCustomization/** - Player character creation and customization
-  - `PlayerCustomizer.cs` - Main customization logic
-  - `SlimeModel.cs` - Character model management
-  - `CameraManager.cs` - Customization camera controls
-  - `PlayerReadyUI.cs` - Ready state UI management
+- **`HabibVerse.cs`** - Main game manager and system initialization. Handles overall game state, scene management, and core game flow orchestration.
+- **`SimpleCameraController.cs`** - Basic camera controller for main menu and non-gameplay scenes. Provides smooth camera movement and rotation.
+- **`TimerUI.cs`** - Displays and manages in-game timers for game modes, countdowns, and match duration.
 
-- **Gameplay/** - Core game mechanics and player controls
-  - `PlayerController.cs` - Local player movement and input
-  - `AnimatedPlayerController.cs` - Animation controller for players
-  - `BulletPickup.cs` / `SizePickup.cs` - Collectible items
-  - `HabibVerseFreeroamManager.cs` - Freeroam game mode
-  - `HabibVerseTreasureHuntManager.cs` - Treasure hunt game mode
-  - `PlayerHUD.cs` - In-game UI and HUD
+### CharacterCustomization/ - Player Avatar Creation System
 
-- **Lobby/** - Pre-game lobby and server management
-  - `AuthenticateUI.cs` - Authentication interface
-  - `EditPlayerName.cs` - Player name configuration
-  - `ClientNetworkTransform.cs` - Network player sync
-  - `LoadingUI.cs` - Loading screens
+- **`PlayerCustomizer.cs`** ⭐ - Main customization hub managing the entire character creation flow including appearance, accessories, and customization data persistence.
+- **`SlimeModel.cs`** - Handles the 3D slime character model visualization and material updates based on customization choices.
+- **`SlimeParticle.cs`** - Manages particle effects for the slime character.
+- **`SlimeFace.cs`** - Manages facial expressions and features for the slime character.
+- **`CameraManager.cs`** - Controls the camera during character customization allowing players to rotate and view their character.
+- **`PlayerReadyUI.cs`** - Manages the ready state UI allowing players to confirm they're prepared to start the game.
+- **`ReadySelect.cs`** - Handles player ready/not-ready selection logic and state synchronization.
+- **`CustomizationData.cs`** - Data structure storing player customization preferences (colors, hats, skins).
+- **`PlayerCard.cs`** - Displays player information card during lobby phase.
+- **`HatSpawn.cs`** - Manages hat and cosmetic item spawning on the player model.
+- **`CharacterSelectionState.cs`** - Manages the character selection UI state machine.
+- **`ServerUI.cs`** - Server-side UI management during customization phase.
+- **`DisconnectionMessage.cs`** - Displays disconnection messages and handles reconnection flow.
 
-- **Chats/** - In-game communication system
-  - `LobbyChatBehaviour.cs` - Lobby chat functionality
-  - `ChatMessage.cs` - Chat message handling
-  - `words.json` - Profanity/content filter
+### Gameplay/ - Core Game Mechanics & Player Control
 
-- **Team/** - Team management and logic
+- **`PlayerController.cs`** ⭐ - Local player input handling and movement logic. Controls player input processing, movement direction, and basic physics.
+- **`AnimatedPlayerController.cs`** ⭐ - Synchronizes animations with player movement states and networked animation playback across all players.
+- **`PlayerManager.cs`** ⭐ - Manages individual player instance including health, state, and gameplay properties. Handles player damage, death, and respawn logic.
+- **`LocalPlayerGameManager.cs`** - Manages game state and mechanics for the local player instance in gameplay.
+- **`PlayerSpawner.cs`** - Handles player instantiation and respawning at designated spawn points.
+- **`PlayerHUD.cs`** - In-game heads-up display showing player health, ammo, score, and other vital information.
+- **`PlayerUI.cs`** - General player UI management during gameplay.
+- **`HabibVerseFreeroamManager.cs`** - Game mode manager for free-roaming exploration without objectives.
+- **`HabibVerseTreasureHuntManager.cs`** - Game mode manager for treasure hunt competitive gameplay with collectibles and scoring.
+- **`BulletPickup.cs`** - Collectible item that replenishes player ammunition when picked up.
+- **`SizePickup.cs`** - Collectible item that temporarily or permanently alters player size/scale.
+- **`Treasure.cs`** - Treasure collectible in treasure hunt mode with scoring value.
+- **`Bullet.cs`** - Projectile behavior, collision detection, and damage application.
+- **`BulletTrailScriptableObject.cs`** - ScriptableObject configuration for bullet trail visual effects.
+- **`PauseUI.cs`** - Pause menu interface with resume, settings, and quit options.
+- **`SlideTrigger.cs`** - Trigger zone that applies sliding effect to players who enter.
+- **`TrampolineTrigger.cs`** - Trigger zone that bounces/launches players upward for platform navigation.
 
-- **TestingLobby/** - Testing and debug utilities
+### Lobby/ - Pre-Game Server & Authentication
 
-- **UI/** - General UI components and management
+- **`AuthenticateUI.cs`** ⭐ - Main authentication UI handling login/signup flows and credential verification.
+- **`ClientNetworkTransform.cs`** - Network synchronization component for player position/rotation during lobby.
+- **`EditPlayerName.cs`** - UI for editing and saving the player's display name.
+- **`LoadingUI.cs`** - Loading screen UI with progress indicators and tips.
 
-### Root Level Scripts
+### Chats/ - In-Game Communication System
 
-- `HabibVerse.cs` - Main game manager and initialization
-- `SimpleCameraController.cs` - Basic camera control
-- `TimerUI.cs` - Timer display and management
+- **`LobbyChatBehaviour.cs`** ⭐ - Main chat system manager handling message sending, receiving, and display.
+- **`ChatMessage.cs`** - Individual chat message data structure and display component.
+- **`words.json`** - Profanity filter word list and content moderation rules.
+
+### Team/ - Backend Services & Authentication
+
+- **`GameManager.cs`** ⭐ - High-level game orchestration and multiplayer session management.
+- **`Sign_UP.cs`** - User registration endpoint and account creation logic.
+- **`Sign_IN.cs`** - User authentication and login validation logic.
+- **`SessionID.cs`** - Session token management and player session tracking.
+
+### UI/ - General User Interface Components
+
+- **`MUIManager.cs`** - Main UI manager coordinating all UI panels and screens.
+- **`CharacterSelectionUI.cs`** - Character selection interface allowing player to choose their avatar.
+
+### TestingLobby/ - Development & Debugging
+
+- **`TestingLobbyUI.cs`** - Testing utility UI for development and debugging gameplay scenarios.
 
 ## Requirements
 

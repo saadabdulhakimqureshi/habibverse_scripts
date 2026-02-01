@@ -1,3 +1,12 @@
+/// <summary>
+/// CharacterSelectionState - Character Selection UI State Machine
+/// 
+/// Manages the character selection interface and state transitions.
+/// Handles UI interactions, customization options, and scene progression.
+/// 
+/// Dependencies: Cinemachine, Netcode, Unity Services
+/// </summary>
+
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;

@@ -1,3 +1,19 @@
+/// <summary>
+/// CustomizationData - Player Customization Data Structure
+/// 
+/// Network-serializable struct containing all player customization preferences.
+/// Implements INetworkSerializable for seamless Netcode multiplayer synchronization.
+/// 
+/// Data Stored:
+/// - playerName: Display name for the player
+/// - clientId: Unique network client identifier
+/// - modelColor: Primary slime color
+/// - particlesColor: Particle effect color
+/// - modelIndex: Selected model variation
+/// - Additional customization options
+/// 
+/// Dependencies: Netcode, Unity.Collections
+/// </summary>
 
 using System.Collections;
 using System.Collections.Generic;

@@ -1,3 +1,20 @@
+/// <summary>
+/// HabibVerse - Main Game Manager
+/// 
+/// Central orchestrator for the HabibVerse multiplayer game.
+/// Manages networked player data, game state, scene transitions, and player list synchronization.
+/// 
+/// Key Responsibilities:
+/// - Maintains NetworkList of all connected players and their customization data
+/// - Broadcasts events when player list or individual player data changes
+/// - Singleton pattern for global game access
+/// - NetworkBehaviour for Netcode multiplayer synchronization
+/// 
+/// Events:
+/// - OnPlayerListChanged: Fired when players join/leave
+/// - OnPlayerDataChanged: Fired when player customization data updates
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

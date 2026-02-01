@@ -1,3 +1,18 @@
+/// <summary>
+/// PlayerCustomizer - Character Customization Hub
+/// 
+/// Central manager for the entire character customization flow.
+/// Coordinates between the slime model, camera, UI, and networking to create an intuitive character creation experience.
+/// 
+/// Key Responsibilities:
+/// - Manages player index and customization data
+/// - Listens to global player list and data change events
+/// - Integrates Cinemachine virtual cameras for smooth customization view
+/// - Synchronizes customization with network players
+/// 
+/// Dependencies: HabibVerse (singleton), Cinemachine, Netcode
+/// </summary>
+
 using Cinemachine;
 using System;
 using System.Collections;
