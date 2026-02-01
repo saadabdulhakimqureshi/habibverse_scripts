@@ -1,10 +1,27 @@
+/// <summary>
+/// LobbyChatBehaviour - In-Game Chat System
+/// 
+/// Main chat system manager handling message sending, receiving, and display.
+/// Manages networked chat in the lobby with message filtering.
+/// 
+/// Key Responsibilities:
+/// - Send and receive chat messages
+/// - Message display management
+/// - Profanity filtering (via words.json)
+/// - UI text input integration
+/// - Network message synchronization
+/// 
+/// Dependencies: Netcode, TextMeshPro
+/// </summary>
+
 using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
 
-public class LobbyChatBehaviour : NetworkBehaviour {
+public class LobbyChatBehaviour : NetworkBehaviour
+{
     [SerializeField] private ChatMessage chatMessagePrefab;
     [SerializeField] private Transform messageParent;
     [SerializeField] private TMP_InputField chatInputField;
@@ -15,32 +32,40 @@ public class LobbyChatBehaviour : NetworkBehaviour {
 
     private const float MinIntervalBetweenChatMessages = 1f;
     private float _clientSendTimer;
-        
 
-    private void Start() {
+
+    private void Start()
+    {
         LoadProfanityFilter();
         _messages = new List<ChatMessage>();
     }
 
-    private void Update() {
+    private void Update()
+    {
         _clientSendTimer += Time.deltaTime;
-            
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            if (chatInputField.text.Length > 0 && _clientSendTimer > MinIntervalBetweenChatMessages) {
-                SendMessage(); 
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (chatInputField.text.Length > 0 && _clientSendTimer > MinIntervalBetweenChatMessages)
+            {
+                SendMessage();
                 chatInputField.DeactivateInputField(clearSelection: true);
-            } else {
+            }
+            else
+            {
                 chatInputField.Select();
                 chatInputField.ActivateInputField();
             }
         }
     }
 
-    public void SendMessage() {
+    public void SendMessage()
+    {
         string message = chatInputField.text;
         chatInputField.text = "";
-            
-        if (string.IsNullOrWhiteSpace(message)) {
+
+        if (string.IsNullOrWhiteSpace(message))
+        {
             return;
         }
 
@@ -48,33 +73,37 @@ public class LobbyChatBehaviour : NetworkBehaviour {
         SendChatMessageServerRpc(message, NetworkManager.Singleton.LocalClientId);
     }
 
-    private void AddMessage(string message, ulong senderPlayerId) {
+    private void AddMessage(string message, ulong senderPlayerId)
+    {
         var msg = Instantiate(chatMessagePrefab, messageParent);
         message = FilterProfanity(message);
 
         int playerIndex = HabibVerse.Instance.GetPlayerIndex(senderPlayerId);
         msg.SetMessage(HabibVerse.Instance.players[playerIndex].playerName.ToString(), message);
-            
+
         _messages.Insert(0, msg);
 
         // Set the position based on the index
         Vector3 oldPosition = msg.transform.localPosition;
-        Vector3 newPosition = new Vector3(oldPosition.x, oldPosition.y +  (_messages.Count-1) * 40f, oldPosition.z); // Adjust the Y position as needed
+        Vector3 newPosition = new Vector3(oldPosition.x, oldPosition.y + (_messages.Count - 1) * 40f, oldPosition.z); // Adjust the Y position as needed
         msg.transform.localPosition = newPosition;
 
-        if (_messages.Count > MaxNumberOfMessagesInList) {
+        if (_messages.Count > MaxNumberOfMessagesInList)
+        {
             Destroy(_messages[0]);
             _messages.RemoveAt(0);
         }
     }
 
     [ClientRpc]
-    private void ReceiveChatMessageClientRpc(string message, ulong senderPlayerId) {
+    private void ReceiveChatMessageClientRpc(string message, ulong senderPlayerId)
+    {
         AddMessage(message, senderPlayerId);
     }
-        
+
     [ServerRpc(RequireOwnership = false)]
-    private void SendChatMessageServerRpc(string message, ulong senderPlayerId) {
+    private void SendChatMessageServerRpc(string message, ulong senderPlayerId)
+    {
         ReceiveChatMessageClientRpc(message, senderPlayerId);
     }
 

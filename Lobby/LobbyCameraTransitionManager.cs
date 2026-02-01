@@ -1,3 +1,16 @@
+/// <summary>
+/// LobbyCameraTransitionManager - Lobby Camera Management
+/// 
+/// Manages camera transitions between different lobby views.
+/// Coordinates Cinemachine virtual cameras for smooth scene transitions.
+/// 
+/// Features:
+/// - Server camera management
+/// - Multiple lobby camera views
+/// - Smooth camera transitions
+/// - Singleton pattern access
+/// </summary>
+
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;

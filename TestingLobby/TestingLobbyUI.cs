@@ -1,3 +1,18 @@
+/// <summary>
+/// TestingLobbyUI - Testing Lobby Interface
+/// 
+/// Testing and debugging utility UI for development and testing gameplay scenarios.
+/// Provides debugging tools for testing in lobby environment.
+/// 
+/// Features:
+/// - Testing controls
+/// - Debug buttons
+/// - Scene switching
+/// - Development utilities
+/// 
+/// Dependencies: Netcode, Scene Management
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,15 +33,17 @@ public class TestingLobbyUI : MonoBehaviour
 
     void Start()
     {
-        CreateGame.onClick.AddListener(() => {
+        CreateGame.onClick.AddListener(() =>
+        {
             NetworkManager.Singleton.StartHost();
             NetworkManager.Singleton.SceneManager.LoadScene("CharacterSelectionScene", LoadSceneMode.Single);
 
         });
-        JoinGame.onClick.AddListener(() => {
+        JoinGame.onClick.AddListener(() =>
+        {
             NetworkManager.Singleton.StartClient();
         });
-        
+
     }
 
     // Update is called once per frame

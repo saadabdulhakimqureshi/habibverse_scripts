@@ -1,3 +1,15 @@
+/// <summary>
+/// MainMenuCleanUp - Network Cleanup Handler
+/// 
+/// Handles cleanup of network objects when returning to main menu.
+/// Ensures proper network shutdown and resource cleanup.
+/// 
+/// Features:
+/// - Network object destruction
+/// - Connection teardown
+/// - Resource cleanup
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;

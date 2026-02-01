@@ -1,3 +1,20 @@
+/// <summary>
+/// CharacterSelectionUI - Character Selection Interface
+/// 
+/// Character selection interface allowing players to choose their avatar.
+/// Provides UI controls for character selection and customization entry.
+/// 
+/// Features:
+/// - Character preview display
+/// - Character selection buttons
+/// - Confirm selection interface
+/// - Customization flow entry
+/// - Cinemachine camera control
+/// - Network integration
+/// 
+/// Dependencies: Cinemachine, Netcode, Input System, TextMeshPro
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +28,9 @@ using TMPro;
 public class CharacterSelectionUI : MonoBehaviour
 {
     // Start is called before the first frame update
-    
 
-    
+
+
 
     [Header("Scene References")]
     public CameraManager CameraManager;
@@ -44,9 +61,9 @@ public class CharacterSelectionUI : MonoBehaviour
 
     public void Awake()
     {
-        
+
     }
-    
+
     void Start()
     {
         ReadyButton.onClick.AddListener(() =>
@@ -64,8 +81,8 @@ public class CharacterSelectionUI : MonoBehaviour
         ResetCustomization();
 
         // Getting saved player name and updating player customization data.
-        
-        
+
+
     }
 
     // Update is called once per frame
@@ -88,7 +105,7 @@ public class CharacterSelectionUI : MonoBehaviour
 
     public void SetModelIndex(int index)
     {
-        
+
         HabibVerse.Instance.SetModelIndex(index);
     }
 
@@ -99,7 +116,7 @@ public class CharacterSelectionUI : MonoBehaviour
 
     public void SetModelColor(int index)
     {
-        
+
         HabibVerse.Instance.SetModelColor(colors[index].color);
     }
     public void SetParticlesColor(int index)
@@ -130,7 +147,7 @@ public class CharacterSelectionUI : MonoBehaviour
         ModelSelection.SetActive(false);
     }
 
-    
+
     public void DisableCharacterSelection()
     {
         ResetCustomization();
@@ -140,7 +157,7 @@ public class CharacterSelectionUI : MonoBehaviour
     {
 
         HabibVerse.Instance.SetFaceIndex(index);
-        
+
     }
 
     public void ChangeParticles(int index)
@@ -222,5 +239,5 @@ public class CharacterSelectionUI : MonoBehaviour
         ModelSelection.SetActive(false);
     }
 
-    
+
 }

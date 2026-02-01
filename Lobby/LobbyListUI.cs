@@ -1,3 +1,17 @@
+/// <summary>
+/// LobbyListUI - Available Lobbies Display
+/// 
+/// Displays list of available lobbies for players to browse and join.
+/// Manages lobby list updates and join requests.
+/// 
+/// Features:
+/// - Lobby list display
+/// - Lobby filtering/searching
+/// - Join lobby functionality
+/// - Network integration
+/// - Scene management
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +21,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LobbyListUI : MonoBehaviour {
+public class LobbyListUI : MonoBehaviour
+{
 
 
     public static LobbyListUI Instance { get; private set; }
@@ -20,7 +35,8 @@ public class LobbyListUI : MonoBehaviour {
     [SerializeField] private Button createLobbyButton;
 
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
 
         lobbySingleTemplate.gameObject.SetActive(false);
@@ -29,7 +45,8 @@ public class LobbyListUI : MonoBehaviour {
         createLobbyButton.onClick.AddListener(CreateLobbyButtonClick);
     }
 
-    private void Start() {
+    private void Start()
+    {
         LobbyManager.Instance.OnLobbyListChanged += LobbyManager_OnLobbyListChanged;
         LobbyManager.Instance.OnJoinedLobby += LobbyManager_OnJoinedLobby;
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
@@ -41,30 +58,37 @@ public class LobbyListUI : MonoBehaviour {
     {
     }
 
-    private void LobbyManager_OnKickedFromLobby(object sender, LobbyManager.LobbyEventArgs e) {
+    private void LobbyManager_OnKickedFromLobby(object sender, LobbyManager.LobbyEventArgs e)
+    {
         Show();
     }
 
-    private void LobbyManager_OnLeftLobby(object sender, EventArgs e) {
+    private void LobbyManager_OnLeftLobby(object sender, EventArgs e)
+    {
         Show();
     }
 
-    private void LobbyManager_OnJoinedLobby(object sender, LobbyManager.LobbyEventArgs e) {
+    private void LobbyManager_OnJoinedLobby(object sender, LobbyManager.LobbyEventArgs e)
+    {
         Hide();
     }
 
-    private void LobbyManager_OnLobbyListChanged(object sender, LobbyManager.OnLobbyListChangedEventArgs e) {
+    private void LobbyManager_OnLobbyListChanged(object sender, LobbyManager.OnLobbyListChangedEventArgs e)
+    {
         UpdateLobbyList(e.lobbyList);
     }
 
-    private void UpdateLobbyList(List<Unity.Services.Lobbies.Models.Lobby> lobbyList) {
-        foreach (Transform child in container) {
+    private void UpdateLobbyList(List<Unity.Services.Lobbies.Models.Lobby> lobbyList)
+    {
+        foreach (Transform child in container)
+        {
             if (child == lobbySingleTemplate) continue;
 
             Destroy(child.gameObject);
         }
 
-        foreach (Unity.Services.Lobbies.Models.Lobby lobby in lobbyList) {
+        foreach (Unity.Services.Lobbies.Models.Lobby lobby in lobbyList)
+        {
             Transform lobbySingleTransform = Instantiate(lobbySingleTemplate, container);
             lobbySingleTransform.gameObject.SetActive(true);
             LobbyListSingleUI lobbyListSingleUI = lobbySingleTransform.GetComponent<LobbyListSingleUI>();
@@ -72,19 +96,23 @@ public class LobbyListUI : MonoBehaviour {
         }
     }
 
-    private void RefreshButtonClick() {
+    private void RefreshButtonClick()
+    {
         LobbyManager.Instance.RefreshLobbyList();
     }
 
-    private void CreateLobbyButtonClick() {
+    private void CreateLobbyButtonClick()
+    {
         LobbyCreateUI.Instance.Show();
     }
 
-    private void Hide() {
+    private void Hide()
+    {
         gameObject.SetActive(false);
     }
 
-    private void Show() {
+    private void Show()
+    {
         gameObject.SetActive(true);
     }
 

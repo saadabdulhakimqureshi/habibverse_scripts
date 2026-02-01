@@ -1,3 +1,16 @@
+/// <summary>
+/// LobbyListSingleUI - Single Lobby List Item
+/// 
+/// Represents a single lobby in the lobby list UI.
+/// Displays lobby info and handles join interactions.
+/// 
+/// Features:
+/// - Lobby name display
+/// - Player count display
+/// - Join button
+/// - Lobby data binding
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +18,10 @@ using TMPro;
 using Unity.Services.Lobbies.Models;
 using UnityEngine.UI;
 
-public class LobbyListSingleUI : MonoBehaviour {
+public class LobbyListSingleUI : MonoBehaviour
+{
 
-    
+
     [SerializeField] private TextMeshProUGUI lobbyNameText;
     [SerializeField] private TextMeshProUGUI playersText;
     [SerializeField] private TextMeshProUGUI gameModeText;
@@ -16,13 +30,16 @@ public class LobbyListSingleUI : MonoBehaviour {
     private Unity.Services.Lobbies.Models.Lobby lobby;
 
 
-    private void Awake() {
-        GetComponent<Button>().onClick.AddListener(() => {
+    private void Awake()
+    {
+        GetComponent<Button>().onClick.AddListener(() =>
+        {
             LobbyManager.Instance.JoinLobby(lobby);
         });
     }
 
-    public void UpdateLobby(Unity.Services.Lobbies.Models.Lobby lobby) {
+    public void UpdateLobby(Unity.Services.Lobbies.Models.Lobby lobby)
+    {
         this.lobby = lobby;
 
         lobbyNameText.text = lobby.Name;

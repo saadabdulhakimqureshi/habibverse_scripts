@@ -1,10 +1,25 @@
+/// <summary>
+/// LobbyCreateUI - Lobby Creation Interface
+/// 
+/// UI for creating new game lobbies with customizable settings.
+/// Allows players to set lobby parameters before launching a game.
+/// 
+/// Features:
+/// - Lobby name input
+/// - Player count configuration
+/// - Game mode selection
+/// - Create button with validation
+/// - Singleton pattern access
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LobbyCreateUI : MonoBehaviour {
+public class LobbyCreateUI : MonoBehaviour
+{
 
 
     public static LobbyCreateUI Instance { get; private set; }
@@ -31,10 +46,12 @@ public class LobbyCreateUI : MonoBehaviour {
     private int maxPlayers;
     private LobbyManager.GameMode gameMode;
     private LobbyManager.GameMap gameMap;
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
 
-        createButton.onClick.AddListener(() => {
+        createButton.onClick.AddListener(() =>
+        {
             LobbyManager.Instance.CreateLobby(
                 lobbyName,
                 maxPlayers,
@@ -45,28 +62,35 @@ public class LobbyCreateUI : MonoBehaviour {
             Hide();
         });
 
-        lobbyNameButton.onClick.AddListener(() => {
+        lobbyNameButton.onClick.AddListener(() =>
+        {
             UI_InputWindow.Show_Static("Lobby Name", lobbyName, "abcdefghijklmnopqrstuvxywzABCDEFGHIJKLMNOPQRSTUVXYWZ .,-", 20,
-            () => {
+            () =>
+            {
                 // Cancel
             },
-            (string lobbyName) => {
+            (string lobbyName) =>
+            {
                 this.lobbyName = lobbyName;
                 UpdateText();
             });
         });
 
-        publicPrivateButton.onClick.AddListener(() => {
+        publicPrivateButton.onClick.AddListener(() =>
+        {
             isPrivate = !isPrivate;
             UpdateText();
         });
 
-        maxPlayersButton.onClick.AddListener(() => {
+        maxPlayersButton.onClick.AddListener(() =>
+        {
             UI_InputWindow.Show_Static("Max Players", maxPlayers,
-            () => {
+            () =>
+            {
                 // Cancel
             },
-            (int maxPlayers) => {
+            (int maxPlayers) =>
+            {
                 if (maxPlayers <= 2) maxPlayers = 2;
                 if (maxPlayers > 6) maxPlayers = 6;
                 this.maxPlayers = maxPlayers;
@@ -74,8 +98,10 @@ public class LobbyCreateUI : MonoBehaviour {
             });
         });
 
-        gameModeButton.onClick.AddListener(() => {
-            switch (gameMode) {
+        gameModeButton.onClick.AddListener(() =>
+        {
+            switch (gameMode)
+            {
                 default:
                 case LobbyManager.GameMode.MiniGame:
                     gameMode = LobbyManager.GameMode.FreeRoam;
@@ -87,37 +113,44 @@ public class LobbyCreateUI : MonoBehaviour {
             UpdateText();
         });
 
-        librarySecondFloorButton.onClick.AddListener(() => {
+        librarySecondFloorButton.onClick.AddListener(() =>
+        {
             gameMap = LobbyManager.GameMap.LibrarySecondFloor;
         });
 
-        informationCommonsButton.onClick.AddListener(() => {
+        informationCommonsButton.onClick.AddListener(() =>
+        {
             gameMap = LobbyManager.GameMap.InformationCommons;
         });
 
-        tariqRafiButton.onClick.AddListener(() => {
+        tariqRafiButton.onClick.AddListener(() =>
+        {
             gameMap = LobbyManager.GameMap.TariqRafi;
         });
 
-        tapalButton.onClick.AddListener(() => {
+        tapalButton.onClick.AddListener(() =>
+        {
             gameMap = LobbyManager.GameMap.Tapal;
         });
 
         Hide();
     }
 
-    private void UpdateText() {
+    private void UpdateText()
+    {
         lobbyNameText.text = lobbyName;
         publicPrivateText.text = isPrivate ? "Private" : "Public";
         maxPlayersText.text = maxPlayers.ToString();
         gameModeText.text = gameMode.ToString();
     }
 
-    private void Hide() {
+    private void Hide()
+    {
         gameObject.SetActive(false);
     }
 
-    public void Show() {
+    public void Show()
+    {
         gameObject.SetActive(true);
 
         lobbyName = "MyLobby";

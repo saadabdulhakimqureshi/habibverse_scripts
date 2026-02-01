@@ -1,7 +1,21 @@
+/// <summary>
+/// Sign_UP - User Registration Handler
+/// 
+/// User registration endpoint and account creation logic.
+/// Handles user signup validation and backend integration.
+/// 
+/// Features:
+/// - User registration form
+/// - Email and password validation
+/// - Regex-based input validation
+/// - Account creation submission
+/// - TextMeshPro UI integration
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Import the TextMeshPro namespace
+using TMPro;
 using System.Text.RegularExpressions;
 
 public class Sign_UP : MonoBehaviour

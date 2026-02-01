@@ -1,3 +1,19 @@
+/// <summary>
+/// MUIManager - Main UI Manager
+/// 
+/// Central UI manager coordinating all UI panels and screens.
+/// Handles main menu and general UI orchestration.
+/// 
+/// Features:
+/// - UI panel management
+/// - Menu navigation
+/// - Screen transitions
+/// - Input handling
+/// - Cinemachine camera integration
+/// 
+/// Dependencies: Cinemachine, Netcode, Input System
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,7 +52,7 @@ public class MUIManager : MonoBehaviour
     }
 
 
-   public void Host()
+    public void Host()
     {
         if (NetworkManager.Singleton.StartHost())
         {

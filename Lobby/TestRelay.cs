@@ -1,3 +1,18 @@
+/// <summary>
+/// TestRelay - Unity Relay Testing & Integration
+/// 
+/// Testing and debugging utility for Unity Relay networking integration.
+/// Handles relay allocation and connection testing.
+/// 
+/// Features:
+/// - Relay server allocation
+/// - Connection testing
+/// - Transport configuration
+/// - Debugging utilities
+/// 
+/// Dependencies: Unity Relay, Netcode Transport
+/// </summary>
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,7 +39,7 @@ public class TestRelay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public async Task<string> CreateRelay()
@@ -40,13 +55,13 @@ public class TestRelay : MonoBehaviour
 
             Debug.Log(joinCode);
 
-/*            NetworkManager.Singleton.GetComponent<UnityTransport>().SetHostRelayData(
-                allocation.RelayServer.IpV4,
-                (ushort)allocation.RelayServer.Port,
-                allocation.AllocationIdBytes,
-                allocation.Key,
-                allocation.ConnectionData
-            );*/
+            /*            NetworkManager.Singleton.GetComponent<UnityTransport>().SetHostRelayData(
+                            allocation.RelayServer.IpV4,
+                            (ushort)allocation.RelayServer.Port,
+                            allocation.AllocationIdBytes,
+                            allocation.Key,
+                            allocation.ConnectionData
+                        );*/
 
             RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
 
@@ -54,13 +69,13 @@ public class TestRelay : MonoBehaviour
 
             NetworkManager.Singleton.StartHost();
 
-            
+
             NetworkManager.Singleton.SceneManager.LoadScene("CharacterSelectionScene", LoadSceneMode.Single);
-            
+
 
             return joinCode;
         }
-        catch(RelayServiceException e)
+        catch (RelayServiceException e)
         {
             Debug.Log(e.Message);
             return null;

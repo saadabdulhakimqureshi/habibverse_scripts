@@ -1,3 +1,17 @@
+/// <summary>
+/// Lobby - Server Lobby Management
+/// 
+/// Manages lobby creation, management, and player joining on the server side.
+/// Handles Unity Services integration for lobbies and authentication.
+/// 
+/// Features:
+/// - Lobby creation and configuration
+/// - Player management in lobbies
+/// - Lobby data persistence
+/// - Authentication integration
+/// - Unity Services Lobbies API
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,7 +50,7 @@ public class Lobby : MonoBehaviour
     {
 
     }
-     
+
     // Creating our lobby asynchronously.
     public async void CreateLobby(string lobbyName = "MyLobby", int maxPlayers = 4, bool isPrivate = true)
     {
@@ -59,21 +73,21 @@ public class Lobby : MonoBehaviour
                         { "PlayerName", new PlayerDataObject(PlayerDataObject.VisibilityOptions.Member, playerName) }
                     }
                 },
-                
+
                 // Defining data of our lobby.
                 // Each argument will be dictionary containing key, DataObject
                 Data = new Dictionary<string, DataObject>
                 {
-                    
+
                     {"GameMode", new DataObject(DataObject.VisibilityOptions.Public, "FreeRoam") }
                 }
-                
+
             };
 
             // Takes arguments of lobby name and max number of players.
             Unity.Services.Lobbies.Models.Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, createLobbyOptions);
 
-            
+
             Debug.Log("Created Lobby! " + lobby.Name + " " + lobby.MaxPlayers);
 
             // Storing our hostLobby for future updates.
@@ -200,7 +214,7 @@ public class Lobby : MonoBehaviour
 
 
         // Data takes index of data key.
-        Debug.Log("Players in lobby" + lobby.Name +  " " + lobby.Data["GameMode"].Value);
+        Debug.Log("Players in lobby" + lobby.Name + " " + lobby.Data["GameMode"].Value);
 
         foreach (Player player in lobby.Players)
         {
@@ -222,11 +236,12 @@ public class Lobby : MonoBehaviour
     }
 
     // Updating lobby data
-    public async void UpdateLobbyGameMode(string gameMode) 
+    public async void UpdateLobbyGameMode(string gameMode)
     {
         try
         {
-            hostLobby = await Lobbies.Instance.UpdateLobbyAsync(hostLobby.Id, new UpdateLobbyOptions{
+            hostLobby = await Lobbies.Instance.UpdateLobbyAsync(hostLobby.Id, new UpdateLobbyOptions
+            {
                 Data = new Dictionary<string, DataObject> {
                     { "GameMode", new DataObject(DataObject.VisibilityOptions.Public, gameMode)}
                 }
@@ -256,7 +271,7 @@ public class Lobby : MonoBehaviour
         }
     }
 
-    
+
     public async void LeaveLobby()
     {
         try

@@ -1,7 +1,21 @@
+/// <summary>
+/// Sign_IN - User Authentication Handler
+/// 
+/// User authentication and login validation logic.
+/// Validates user credentials and manages login flow.
+/// 
+/// Features:
+/// - Login form interface
+/// - Email/password validation
+/// - Regex-based input validation
+/// - Authentication submission
+/// - TextMeshPro UI integration
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Import the TextMeshPro namespace
+using TMPro;
 using System.Text.RegularExpressions;
 
 public class Sign_IN : MonoBehaviour

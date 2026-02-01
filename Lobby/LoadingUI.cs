@@ -1,3 +1,16 @@
+/// <summary>
+/// LoadingUI - Loading Screen Interface
+/// 
+/// Loading screen UI with progress indicators and helpful tips.
+/// Displays during scene transitions and game initialization.
+/// 
+/// Features:
+/// - Loading progress bar display
+/// - Loading tips/hints rotation
+/// - Scene loading coordination
+/// - LobbyManager integration
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +28,7 @@ public class LoadingUI : MonoBehaviour
         {
             LocalPlayerGameManager.Instance.OnLocalPlayerQuit += Instance_OnLocalPlayerQuit;
         }
-        if(ReadySelect.Instance != null)
+        if (ReadySelect.Instance != null)
         {
             ReadySelect.Instance.OnAllPlayersReady += Instance_OnAllPlayersReady;
         }
@@ -40,7 +53,7 @@ public class LoadingUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void Hide()
